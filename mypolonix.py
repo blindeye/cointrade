@@ -1,11 +1,11 @@
 from poloniex import Poloniex
 import keyfile
 
+#polo = Poloniex(keyfile.polokey, keyfile.polosecret)
+polo = Poloniex()
 
-polo = Poloniex(keyfile.polokey, keyfile.polosecret)
-
-print(polo.returnTicker()['BTC_ETH'])
-print(keyfile.polokey)
+#print(polo.returnTicker()['BTC_ETH'])
+#print(keyfile.polokey)
 
 BTC2ETH = polo.returnTicker()['BTC_ETH']
 
