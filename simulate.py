@@ -23,29 +23,45 @@ ETH = int(FindETH)
 FindXRP = jsonTicker['xrp']['last']
 XRP = int(FindXRP)
 
-mybalance = 100000.0
+mybalance = 500000.0
 myBTC = mybalance/BTC
 myBTC = myBTC * (1.0 - 0.0015)
+#coinone trans
+myBTC = myBTC - 0.0005
 myETH = myBTC / float(ETH2BTC)
 myETH = myETH * (1.0 - 0.0025)
+#poloniex trans
+myETH = myETH - 0.005
 BTC_polo_ETH = myETH * ETH * (1.0 - 0.0015)
 
 myETH = mybalance/ETH
 myETH = myETH * (1.0 - 0.0015)
+#coinone trans
+myETH = myETH - 0.01
 myBTC = myETH * float(ETH2BTC)
 myBTC = myBTC * (1.0 - 0.0015)
+#poloniex trans
+myBTC = myBTC - 0.0001
 ETH_polo_BTC = myBTC * BTC * (1.0 - 0.0015)
 
 myBTC = mybalance/BTC
 myBTC = myBTC * (1.0 - 0.0015)
+#coinone trans
+myBTC = myBTC - 0.0005
 myXRP = myBTC / float(XRP2BTC)
-myETH = myETH * (1.0 - 0.0025)
+myXRP = myXRP * (1.0 - 0.0025)
+#poloniex trans
+myXRP = myXRP - 0.15
 BTC_polo_XRP = myXRP * XRP * (1.0 - 0.0015)
 
 myXRP = mybalance/XRP
 myXRP = myXRP * (1.0 - 0.0015)
+#coinone trans
+myXRP = myXRP - 0.01
 myBTC = myXRP * float(XRP2BTC)
 myBTC = myBTC * (1.0 - 0.0015)
+#poloniex trans
+myBTC = myBTC - 0.0001
 XRP_polo_BTC = myBTC * BTC * (1.0 - 0.0015)
 
 print("mybalance is ")

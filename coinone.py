@@ -23,17 +23,17 @@ from urllib.request import Request, urlopen
 #    print(LTC)
 
 #class coinone:
-urlTicker = urllib.request.urlopen('https://api.coinone.co.kr/ticker/?currency=all')
-readTicker = urlTicker.read()
-jsonTicker = json.loads(readTicker)
-FindETC = jsonTicker['etc']['last']
-ETC = int(FindETC)
-FindBTC = jsonTicker['btc']['last']
-BTC = int(FindBTC)
-FindETH = jsonTicker['eth']['last']
-ETH = int(FindETH)
-FindXRP = jsonTicker['xrp']['last']
-XRP = int(FindXRP)
+#urlTicker = urllib.request.urlopen('https://api.coinone.co.kr/ticker/?currency=all')
+#readTicker = urlTicker.read()
+#jsonTicker = json.loads(readTicker)
+#FindETC = jsonTicker['etc']['last']
+#ETC = int(FindETC)
+#FindBTC = jsonTicker['btc']['last']
+#BTC = int(FindBTC)
+#FindETH = jsonTicker['eth']['last']
+#ETH = int(FindETH)
+#FindXRP = jsonTicker['xrp']['last']
+#XRP = int(FindXRP)
 #print("coinone")
 #print(BTC)
 #print(ETH)
@@ -64,3 +64,5 @@ XRP = int(FindXRP)
 #    print(BTC)
 #    print(ETH)
 #    print(XRP)
+
+
