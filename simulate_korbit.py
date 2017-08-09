@@ -1,7 +1,7 @@
 import json
-import urllib.request
 from urllib.request import Request, urlopen
 from poloniex import Poloniex
+import datetime
 
 #get polonix trading ratio
 polo = Poloniex()
@@ -11,22 +11,22 @@ XRP2BTC = priceInfo['BTC_XRP']['last']
 
 reqBTC = Request('https://api.korbit.co.kr/v1/ticker?currency_pair=btc_krw' , headers={'User-Agent': 'Mozilla/5.0'})
 readBTC = urlopen(reqBTC).read()
-jsonBTC = json.loads(readBTC)
+jsonBTC = json.loads(readBTC.decode('utf-8'))
 FindBTC = jsonBTC['last']
 BTC = int(FindBTC)
 reqETH = Request('https://api.korbit.co.kr/v1/ticker?currency_pair=eth_krw' , headers={'User-Agent': 'Mozilla/5.0'})
 readETH = urlopen(reqETH).read()
-jsonETH = json.loads(readETH)
+jsonETH = json.loads(readETH.decode('utf-8'))
 FindETH = jsonETH['last']
 ETH = int(FindETH)
 reqETC = Request('https://api.korbit.co.kr/v1/ticker?currency_pair=etc_krw' , headers={'User-Agent': 'Mozilla/5.0'})
 readETC = urlopen(reqETC).read()
-jsonETC = json.loads(readETC)
+jsonETC = json.loads(readETC.decode('utf-8'))
 FindETC = jsonETC['last']
 ETC = int(FindETC)
 reqXRP = Request('https://api.korbit.co.kr/v1/ticker?currency_pair=xrp_krw' , headers={'User-Agent': 'Mozilla/5.0'})
 readXRP = urlopen(reqXRP).read()
-jsonXRP = json.loads(readXRP)
+jsonXRP = json.loads(readXRP.decode('utf-8'))
 FindXRP = jsonXRP['last']
 XRP = int(FindXRP)
 
@@ -71,13 +71,14 @@ myBTC = myBTC * (1.0 - 0.0015)
 myBTC = myBTC - 0.0001
 XRP_polo_BTC = myBTC * BTC * (1.0 - 0.002)
 
-print("mybalance is ")
-print(mybalance)
-print("bitcoin to etherium")
-print(BTC_polo_ETH)
-print("etherium to bitcoin")
-print(ETH_polo_BTC)
-print("bitcoin to ripple")
-print(BTC_polo_XRP)
-print("ripple to bitcoin")
-print(XRP_polo_BTC)
+#print("mybalance is ")
+#print(mybalance)
+#print("bitcoin to etherium")
+#print(BTC_polo_ETH)
+#print("etherium to bitcoin")
+#print(ETH_polo_BTC)
+#print("bitcoin to ripple")
+#print(BTC_polo_XRP)
+#print("ripple to bitcoin")
+#print(XRP_polo_BTC)
+print(datetime.datetime.now(), BTC_polo_ETH, ETH_polo_BTC, BTC_polo_XRP, XRP_polo_BTC)
