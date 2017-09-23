@@ -13,7 +13,7 @@ PAYLOAD = {
   "access_token": ACCESS_TOKEN,
   "price": 500000,
   "qty": 0.1,
-  "currency", "btc"
+  "currency": "btc"
 }
 
 def get_encoded_payload(payload):

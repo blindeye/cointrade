@@ -6,3 +6,5 @@ keyfile = json.loads(kk)
 
 coinoneKey = keyfile['coinonekey']
 coinoneSecret = keyfile['coinonesecret']
+polokey = keyfile['polokey']
+polosecret = keyfile['polosecret']
