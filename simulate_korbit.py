@@ -30,7 +30,7 @@ jsonXRP = json.loads(readXRP.decode('utf-8'))
 FindXRP = jsonXRP['last']
 XRP = int(FindXRP)
 
-mybalance = 50000.0
+mybalance = 500000.0
 myBTC = mybalance/BTC
 myBTC = myBTC * (1.0 - 0.002)
 #coinone trans
