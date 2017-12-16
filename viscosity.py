@@ -8,6 +8,8 @@ import datetime
 import time
 import sys, os
 
+import numpy as np
+
 #get polonix trading ratio
 #polo = Poloniex()
 #priceInfo = polo.returnTicker()
@@ -38,44 +40,28 @@ urlTicker = urllib.request.urlopen('https://api.coinone.co.kr/ticker/?currency=a
 readTicker = urlTicker.read()
 jsonTicker = json.loads(readTicker)
 
-beta = float(sys.argv[1])
-
-FindETC = jsonTicker['etc']['last']
-ETC = int(FindETC)
-FindBTC = jsonTicker['btc']['last']
-BTC = int(FindBTC)
-FindBCH = jsonTicker['bch']['last']
-BCH = int(FindBCH)
-FindETH = jsonTicker['eth']['last']
-ETH = int(FindETH)
-FindXRP = jsonTicker['xrp']['last']
-XRP = int(FindXRP)
-FindLTC = jsonTicker['ltc']['last']
-LTC = int(FindLTC)
+beta = np.exp(np.random.rand(1000)) 
 
 mybalance = 500000.0
-
 now_price = dict()
 coin_amount = dict()
+coinlist = ["BTC", "ETH", "LTC", "XRP", "BCH", "QTUM", "IOTA"] 
+
+for i in coinlist:
+	Findcoin = jsonTicker[i.lower()]['last']
+	now_price[i] = int(Findcoin)
 
 coin_amount['mybalance']=mybalance
-now_price['ETC']=ETC
-now_price['BTC']=BTC
-now_price['BCH']=BCH
-now_price['ETH']=ETH
-now_price['XRP']=XRP
-now_price['LTC']=LTC
 
-coinlist = ["BTC", "BCH", "ETH", "LTC", "XRP", "ETC"] 
 for i in coinlist:
-	coin_amount[i]=0.0
+	coin_amount[i]=dict()
 
-def buy(coin_amount, mybalance, rate, beta, price):
+def buy(amount, coin_type, now_price):
 	mybalance = mybalance - beta * rate * price 
 	coin_amount = coin_amount + beta * rate * (1.-0.0015)
 	return mybalance, coin_amount
 
-def sell(coin_amount, mybalance, rate, beta, price):
+def sell(amount, coin_type):
 	coin_amount = coin_amount - beta * rate * (1.+0.0015) 
 	mybalance = mybalance + beta * rate * price
 	return mybalance, coin_amount
