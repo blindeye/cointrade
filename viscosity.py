@@ -45,7 +45,7 @@ beta = np.exp(np.random.rand(1000))
 mybalance = 500000.0
 now_price = dict()
 coin_amount = dict()
-coinlist = ["BTC", "ETH", "LTC", "XRP", "BCH", "QTUM", "IOTA"] 
+coinlist = ["BTC", "ETH", "LTC", "XRP", "BCH", "BTG", "QTUM", "IOTA"]
 
 for i in coinlist:
 	Findcoin = jsonTicker[i.lower()]['last']
@@ -56,15 +56,13 @@ coin_amount['mybalance']=mybalance
 for i in coinlist:
 	coin_amount[i]=dict()
 
-def buy(amount, coin_type, now_price):
-	mybalance = mybalance - beta * rate * price 
-	coin_amount = coin_amount + beta * rate * (1.-0.0015)
-	return mybalance, coin_amount
+def buy(coin_type, buying, now_price):
+	coin_amount = (1.-0.0015) * buying/now_price[coin_type]
+	return coin_amount
 
-def sell(amount, coin_type):
-	coin_amount = coin_amount - beta * rate * (1.+0.0015) 
-	mybalance = mybalance + beta * rate * price
-	return mybalance, coin_amount
+def sell(coin_type, selling, now_price):
+	coin_amount = (1.+0.0015) * (selling/now_price[coin_type])
+	return coin_amount
 
 if os.path.isfile("./last_val.json"):
 	f = open("./last_val.json", "r")
@@ -82,6 +80,11 @@ if os.path.isfile("./last_bal.json"):
 	line = f.read().strip("\n")
 	coin_amount = json.loads(line)
 	f.close()
+else:
+	f = open("./last_bal.json", "w")
+	f.write(json.dumps(coin_amount))
+	f.close()
+	sys.exit(0)
 
 for i in coinlist: 
 	rate = float(now_price[i] - last_price[i])/last_price[i]
@@ -91,7 +94,7 @@ for i in coinlist:
 		coin_amount['mybalance'], coin_amount[i] = sell(coin_amount[i],coin_amount['mybalance'],rate,beta,now_price[i])
 
 tot=coin_amount['mybalance']
-for i in coinlist: 
+for i in coinlist:
 	tot += coin_amount[i]*now_price[i] 
 
 logger.info("total money : %s" % str(tot))
